@@ -1,5 +1,6 @@
 package Main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -54,13 +55,13 @@ public class MazeSolver {
 	 * @param Finish finish position
 	 */
 	public MazeSolver(int[][] Maze, Position Start, Position Finish) {
-		this.Maze = Maze;
-		this.Start = Start;
-		this.Finish = Finish;
-		this.Current = Start;
+		MazeSolver.Maze = Maze;
+		MazeSolver.Start = Start;
+		MazeSolver.Finish = Finish;
+		Current = Start;
 		solvable = true;
 		Path = new Stack<Position>();		
-		Visited = new boolean[FileReader.height][FileReader.width];
+		Visited = new boolean[MazeReader.height][MazeReader.width];
 	}
 	
 	/**
@@ -130,7 +131,7 @@ public class MazeSolver {
 					System.out.println("Error");
 				break;	
 				}
-			if (solvable == false) {
+			if (!solvable) {
 				System.out.print("maze is broken");
 			}
 			if (Current.equals(Finish)) {
@@ -144,9 +145,9 @@ public class MazeSolver {
 	 * 
 	 * @param args ......
 	 */
-	public static void main(String[] args) {
-		FileReader.ReadFile();
-		MazeSolver N1 = new MazeSolver(FileReader.Maze, FileReader.Start,FileReader.Finish);
+	public static void main(String[] args) throws IOException {
+		MazeReader.ReadFile("RawMaze.txt");
+		MazeSolver N1 = new MazeSolver(MazeReader.Maze, MazeReader.Start,MazeReader.Finish);
 		N1.Solver();		
 	}
 }

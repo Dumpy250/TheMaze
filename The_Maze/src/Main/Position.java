@@ -39,13 +39,13 @@ public Position(int x, int y) {
 	this.y = y;
 	
 	
-	if (x < 0 || x > FileReader.height - 1 || y < 0 || y > FileReader.width - 1) {
+	if (x < 0 || x > MazeReader.height - 1 || y < 0 || y > MazeReader.width - 1) {
 		isOutbounds = true;
 		isBlocked = true;
 	}
 	else {
 		isOutbounds = false;
-		isBlocked = FileReader.Maze[x][y] == 1;
+		isBlocked = MazeReader.Maze[x][y] == 1;
 	}
 }
 
